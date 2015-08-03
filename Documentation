@@ -1,14 +1,14 @@
         b15 b14 b13 b12 b11 b10 b9  b8  b7  b6  b5  b4  b3  b2  b1  b0
 
-NOT:    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0o000000
-FPU:    0   0   0   0   0   0   0   0   0   0   0   0   1   [ COMMAND ] 0o00001c
-LOD:    0   0   0   0   0   0   0   0   0   1   [     DESTINATION     ] 0o0001dd
-STO:    0   0   0   0   0   0   0   0   1   0   [       SOURCE        ] 0o0002ss
-ADD:    0   0   0   0   0   0   0   0   1   1   [       SOURCE        ] 0o0003ss
-SUB:    0   0   0   0   0   0   0   1   0   0   [       SOURCE        ] 0o0004ss
-AND:    0   0   0   0   0   0   0   1   0   1   [       SOURCE        ] 0o0005ss
-EOR:    0   0   0   0   0   0   0   1   1   0   [       SOURCE        ] 0o0006ss
-XOR:    0   0   0   0   0   0   0   1   1   1   [       SOURCE        ] 0o0007ss
+NOT:    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0o000000 // *acc := !*acc
+CHD:    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1   0o000001 // d := !d;
+FPU:    0   0   0   0   0   0   0   0   0   0   0   0   1   [ COMMAND ] 0o00001c //
+STA:    0   0   0   0   0   0   0   0   1   0   [      REGISTER       ] 0o0001rr // acc := &reg
+ADD:    0   0   0   0   0   0   0   0   1   1   [      REGISTER       ] 0o0002rr // *(d ? acc : reg) += *(d ? acc 
+SUB:    0   0   0   0   0   0   0   1   0   0   [      REGISTER       ] 0o0003rr
+AND:    0   0   0   0   0   0   0   1   0   1   [      REGISTER       ] 0o0004rr
+EOR:    0   0   0   0   0   0   0   1   1   0   [      REGISTER       ] 0o0005rr
+XOR:    0   0   0   0   0   0   0   1   1   1   [      REGISTER       ] 0o0006rr
 LODi:   0   0   0   0   0   0   1   [  SIGN EXTENDED IMMEDIATE VALUE  ] 0o001iii
 SFT:    0   0   0   0   0   1   0   [  FLAGS   ][       SOURCE        ] 0o002fss
 CALL:   0   0   0   1   [           TWO'S COMPLEMENT OFFSET           ] 0o01aaaa
