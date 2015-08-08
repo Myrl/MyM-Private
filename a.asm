@@ -1,0 +1,5 @@
+IMM 0x16
+ADD r31
+ADD r31
+ADD r31
+OUT

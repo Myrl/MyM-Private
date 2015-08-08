@@ -1,4 +1,3 @@
-whitespace = " " | "/t"
 lower = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
 upper = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" 
 alpha = lower | upper
@@ -12,6 +11,7 @@ hit = digit | ("A" | "a") | ("B" | "b") | ("C" | "c") | ("D" | "d") | ("E" | "e"
 alnum = alpha | digit
 immediate = ("0x" hit {hit}) | (["0d"] digit { digit}) | ("0o" oit {oit}) | ("0q" qit {qit}) | ("0b" bit { bit})
 
+whitespace = " " | "/t"
 1whitespace = whitespace{whitespace}
 
 register = "r" digit[digit]
@@ -22,5 +22,5 @@ shift = "SFT" 1whitespace immediate ',' 1whitespace register
 branch = "Jz" 1whitespace immediate
 
 instructions = (0op | 1op | shift | branch)
-lines = instructions {whitespace} [";" comment] "/n"
-code := [lines]
+line = instructions {whitespace} [";" comment]
+code := {line "\n"} [line]
