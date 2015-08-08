@@ -1,0 +1,26 @@
+whitespace = " " | "/t"
+lower = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+upper = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" 
+alpha = lower | upper
+
+bit = "0" | "1"
+qit = bit | "2" | "3"
+oit = qit | "4" | "5" | "6" | "7"
+digit = oit | "8" | "9"
+hit = digit | ("A" | "a") | ("B" | "b") | ("C" | "c") | ("D" | "d") | ("E" | "e") | ("F" | "f")
+
+alnum = alpha | digit
+immediate = ("0x" hit {hit}) | (["0d"] digit { digit}) | ("0o" oit {oit}) | ("0q" qit {qit}) | ("0b" bit { bit})
+
+1whitespace = whitespace{whitespace}
+
+register = "r" digit[digit]
+
+0op = "NOT"
+1op = "ADD" 1whitespace register
+shift = "SFT" 1whitespace immediate ',' 1whitespace register
+branch = "Jz" 1whitespace immediate
+
+instructions = (0op | 1op | shift | branch)
+lines = instructions {whitespace} [";" comment] "/n"
+code := [lines]
