@@ -3,6 +3,8 @@
 
 module Parser where
 
+import Control.Applicative hiding (many, (<|>), optional) -- Compatiblity with GHC 7.6.3
+
 import Data.Char
 import Data.Maybe
 import Text.Parsec hiding (label)

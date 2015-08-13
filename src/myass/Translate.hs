@@ -3,6 +3,10 @@
 
 module Translate where
 
+import Control.Applicative -- Compatiblity with GHC 7.6.3
+import Control.Monad       -- Compatiblity with GHC 7.6.3
+import Data.Monoid         -- Compatiblity with GHC 7.6.3
+
 import Control.Monad.Except
 import Control.Monad.Reader
 import Data.Bits

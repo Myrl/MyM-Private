@@ -1,11 +1,12 @@
 module Main where
 
-{-
+import Control.Applicative -- Compatiblity with GHC 7.6.3
 import Options
 import qualified Data.ByteString as B
 
 import Parser
 import Types
+import Translate
 
 data MainOptions = MainOptions
   { output :: String
@@ -23,4 +24,3 @@ main = runCommand $ \opts args -> do
         print $ parse code "" source
     else
         return ()
--}
