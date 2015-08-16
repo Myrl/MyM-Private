@@ -10,6 +10,9 @@ uint64_t registers[32] = {0};
 uint64_t status = 0;
 uint8_t acc = 0;
 
+#define rPC  30
+#define rIMM 31
+
 int main(int argc, char *argv[])
 {
 
@@ -37,12 +40,12 @@ int main(int argc, char *argv[])
     
     int imm;
     int reg;
-    for (int i = 0; i < program_size; ++i)
+    for (; registers[rPC] < program_size; ++registers[rPC])
     {
-        switch(program[i] >> 14)
+        switch(program[registers[rPC]] >> 14)
         {
             case 3:
-                switch((program[i])&7)
+                switch((program[registers[rPC]])&7)
                 {
                     case 0:
                         registers[acc] = ~registers[acc];
@@ -59,8 +62,8 @@ int main(int argc, char *argv[])
                 }
                 break;
             case 2:
-                reg = program[i]&037;
-                switch((program[i]>>6)&7)
+                reg = program[registers[rPC]]&037;
+                switch((program[registers[rPC]]>>6)&7)
                 {
                     case 0:
                         acc = reg;
@@ -98,11 +101,11 @@ int main(int argc, char *argv[])
                 }
                 break;
             case 1:
-                switch((program[i]>>9) & 3)
+                switch((program[registers[rPC]]>>9) & 3)
                 {
                     case 0:
-                        imm = program[i]&0777;
-                        registers[31] = (imm & 0xff) | ((imm & (1 << 8)) ? (-1 << 8) : 0);
+                        imm = program[registers[rPC]]&0777;
+                        registers[rIMM] = (imm & 0xff) | ((imm & (1 << 8)) ? (-1 << 8) : 0);
                         break;
                     case 1:
                         printf("Not yet.");
