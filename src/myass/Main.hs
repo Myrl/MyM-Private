@@ -14,7 +14,7 @@ data MainOptions = MainOptions
 
 instance Options MainOptions where
   defineOptions  =  MainOptions
-                <$> simpleOption "output" "a.o" "Output file name"
+                <$> simpleOption "output" "a.bin" "Output file name"
                 <*> simpleOption "tree" False "Print Parse Tree"
 
 main = runCommand $ \opts args -> do
