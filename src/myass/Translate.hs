@@ -23,10 +23,13 @@ immediate (Lbl s) = ask >>= foo . H.lookup s
     foo (Just x) = pure x
     foo Nothing  = throwError $ "undefined label: " `mappend` s
 
-translate Not     = pure $ 0o140000
-translate Tdf     = pure $ 0o140001
-translate Out     = pure $ 0o140002
-translate In      = pure $ 0o140003
-translate (Add r) = pure $ 0o100100 .|. fromIntegral (unReg r)
+toByteCode = 
+
+
+translate Not     = pure $ 0o000000
+translate Tdf     = pure $ 0o000001
+translate Out     = pure $ 0o000002
+translate In      = pure $ 0o000003
+translate (Add r) = pure $ 0o000100 .|. fromIntegral (unReg r)
 translate (Jz  i) = (.|.) 0o030000 <$> immediate i
-translate (Imm i) = (.|.) 0o040000 <$> immediate i
+translate (Imm i) = (.|.) 0o001000 <$> immediate i

@@ -21,22 +21,8 @@ f1 = sign extend
 f0 = left shift | right shift + 1
 
 REGISTERS:
-R0 - R31 - General Purpose Registers
+R0 - R15 - General Purpose Registers
 
 --Reserved Registers--
-R32 - ACC - Accumulator
-R33 - IMM - Immediate Register
-R34 - WAD0 - Write Address 0
-R35 - WAD1 - Write Address 1
-R36 - RAD0 - Read Address 0
-R37 - RAD1 - Read Address 0
-R38-R47 --unused
-R48 - W0 - [WAD0]
-R49 - W1 - [WAD1]
-R50 - R0 - [RAD0]
-R51 - R1 - [RAD1]
-R52-R59 --unused
-R60 - STACK - Push|Pop stack
-R61 - ToS - Top of Stack
-R62 - SP - Stack Pointer
-R63 - IP - Instruction Pointer
+R30 - PC
+R31 - IMM
